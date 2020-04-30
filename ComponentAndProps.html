@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello ComponentAndProps!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="combineComponent"></div>
+    <!--
+        1.我们调用 ReactDOM.render() 函数，并传入 <Welcome name="Sara" /> 作为参数。
+        2.React 调用 Welcome 组件，并将 {name: 'Sara'} 作为 props 传入。
+        3.Welcome 组件将 <h1>Hello, Sara</h1> 元素作为返回值。
+        4.React DOM 将 DOM 高效地更新为 <h1>Hello, Sara</h1>。
+    -->
+    <script type="text/babel">
+        function Welcome(props) {
+            console.log(props);
+
+            return <h1>Hello,{props.name}</h1>;
+        }
+        const element = <Welcome name="Sara" />;
+        ReactDOM.render(element, document.getElementById('root'));
+    </script>
+    <!--组合组件-->
+    <script type="text/babel">
+        function Welcome(props) {
+            console.log("组合组件"+props);
+            return <h1>Hello,{props.name}</h1>;
+        }
+        function App() {
+            return (
+                <div>
+                    <Welcome name="Sara" />
+                    <Welcome name="Cahal" />
+                    <Welcome name="Edite" />
+                </div>
+            );
+        }
+        ReactDOM.render(
+                <App />,
+                document.getElementById('combineComponent'));
+    </script>
+</body>
+
+</html>
